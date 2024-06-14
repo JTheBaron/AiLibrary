@@ -12,7 +12,7 @@ function Library:CreateLib(title, theme)
     mainFrame.Size = UDim2.new(0.4, 0, 0.6, 0)
     mainFrame.Position = UDim2.new(0.3, 0, 0.2, 0)
     mainFrame.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
-
+    
     local titleLabel = Instance.new("TextLabel", mainFrame)
     titleLabel.Text = title
     titleLabel.Size = UDim2.new(1, 0, 0.1, 0)
@@ -21,13 +21,13 @@ function Library:CreateLib(title, theme)
     titleLabel.Font = Enum.Font.SourceSans
     titleLabel.TextSize = 24
 
-    local tabs = Instance.new("Frame", mainFrame)
-    tabs.Size = UDim2.new(1, 0, 0.9, 0)
-    tabs.Position = UDim2.new(0, 0, 0.1, 0)
-    tabs.BackgroundColor3 = Color3.new(0.15, 0.15, 0.15)
+    local tabHolder = Instance.new("Frame", mainFrame)
+    tabHolder.Size = UDim2.new(1, 0, 0.9, 0)
+    tabHolder.Position = UDim2.new(0, 0, 0.1, 0)
+    tabHolder.BackgroundColor3 = Color3.new(0.15, 0.15, 0.15)
 
     function window:NewTab(name)
-        local tabButton = Instance.new("TextButton", tabs)
+        local tabButton = Instance.new("TextButton", tabHolder)
         tabButton.Text = name
         tabButton.Size = UDim2.new(0.2, 0, 0.1, 0)
         tabButton.BackgroundColor3 = Color3.new(0.25, 0.25, 0.25)
@@ -35,14 +35,14 @@ function Library:CreateLib(title, theme)
         tabButton.Font = Enum.Font.SourceSans
         tabButton.TextSize = 20
 
-        local tabFrame = Instance.new("Frame", tabs)
+        local tabFrame = Instance.new("Frame", tabHolder)
         tabFrame.Size = UDim2.new(1, 0, 0.9, 0)
         tabFrame.Position = UDim2.new(0, 0, 0.1, 0)
         tabFrame.Visible = false
         tabFrame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
 
         tabButton.MouseButton1Click:Connect(function()
-            for _, child in pairs(tabs:GetChildren()) do
+            for _, child in pairs(tabHolder:GetChildren()) do
                 if child:IsA("Frame") then
                     child.Visible = false
                 end
